@@ -1,6 +1,6 @@
 const express= require('express')
 const app=express()
-
+require('./db')
 
 
 app.listen(8000,()=>{
