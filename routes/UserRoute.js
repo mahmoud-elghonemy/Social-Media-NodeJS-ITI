@@ -32,7 +32,7 @@ router.post('/signup',async (req,res,next)=>{
 
 router.post('/login',validator.validateSignin,async (req,res,next)=>
 {
-    try{
+    
     const {email,password} = req.body;
 		const user  = await User.findOne({email});
 		if(!user) throw new CustomError('invalid credentials',400);
@@ -49,11 +49,7 @@ router.post('/login',validator.validateSignin,async (req,res,next)=>
 		})
         
  
-     }catch(error)
-     {
-         console.log(error)
-         next(error)
-     }
+   
 })
 
 router.get('/profile',
