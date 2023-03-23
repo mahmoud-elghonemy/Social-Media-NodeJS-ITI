@@ -25,15 +25,21 @@ router.post('/signup',async (req,res,next)=>{
 
 router.post('/login',async (req,res)=>
 {
-    const {email,password }=req.body;
-   
     try{
-        const Email=await User.findOne({email});
-        if(!Email){
-         const error=new Error('invaild credentials')
-         error.statusCode=400;//bad request
-         next(error)
-        }
+    const {email,password} = req.body;
+		const user  = await User.findOne({email});
+		if(!user) throw new CustomError('invalid credentials',400);
+		const isMatch = await user.comparePassword(password);
+		if(!isMatch) throw new CustomError('invalid credentials',400);
+		// create token 
+		const payload = {id:user._id}
+		const token = await signJwt(payload,jwtSecret,{expiresIn:'1h'}) // kdlsfjasklfds.
+		// send to client
+		res.json({
+			message:'logged in',
+			token,
+			user
+		})
         
  
      }catch(error)
