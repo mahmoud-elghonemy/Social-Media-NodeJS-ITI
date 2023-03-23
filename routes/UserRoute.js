@@ -57,6 +57,8 @@ router.post('/login',validator.validateSignin,async (req,res,next)=>
 })
 
 router.get('/profile',
+verify
+,
 async (req,res,next)=>{
     res.send('profile page');
 })
