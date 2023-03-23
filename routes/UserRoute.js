@@ -23,7 +23,7 @@ router.post('/signup',async (req,res,next)=>{
      }
 })
 
-router.post('/login',async (req,res)=>
+router.post('/login',validator.validateSignin,async (req,res,next)=>
 {
     try{
     const {email,password} = req.body;
