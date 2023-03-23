@@ -1,14 +1,16 @@
 const express= require('express')
 const app=express()
-
+app.use(express.json());
 require('express-async-errors');
 require('./db')
 const CommentRoute = require("./routes/CommentRoute");
 const UserRoutes=require('./routes/UserRoute')
+const PostRoutes=require('./routes/PostRoute')
+
 
 app.use('/user',UserRoutes)
-
-
+app.use('/posts/comments', CommentRoute);
+app.use('/posts', PostRoutes);
 
 
 
@@ -24,10 +26,9 @@ app.use((err,req,res,next)=>{
 });
 
 
-app.use(express.json());
 
 
-app.use('/posts/', CommentRoute);
+
 app.get('/posts/:id', (req, res)=>{
     console.log("hello")
 })
