@@ -6,7 +6,7 @@ const signJwt = promisify(jwt.sign);
 const {jwtSecret} = require('../config')
 const validator = require('../helper/validator');
 const verify = require('../helper/verify');
-
+const CustomError = require('../helper/customError');
 const router=express.Router()
 
 router.post('/signup',async (req,res,next)=>{

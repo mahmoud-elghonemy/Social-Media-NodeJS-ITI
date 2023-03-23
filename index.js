@@ -1,7 +1,7 @@
 const express= require('express')
-
 const app=express()
 
+require('express-async-errors');
 require('./db')
 const CommentRoute = require("./routes/CommentRoute");
 const UserRoutes=require('./routes/UserRoute')
