@@ -2,7 +2,9 @@ const express= require('express')
 const app=express()
 
 require('./db')
+const UserRoutes=require('./routes/UserRoute')
 
+app.use('/user',UserRoutes)
 
 
 
