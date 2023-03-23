@@ -1,7 +1,9 @@
 const express= require('express')
+
 const app=express()
 
 require('./db')
+const CommentRoute = require("./routes/CommentRoute");
 const UserRoutes=require('./routes/UserRoute')
 
 app.use('/user',UserRoutes)
@@ -22,7 +24,13 @@ app.use((err,req,res,next)=>{
 });
 
 
+app.use(express.json());
 
+
+app.use('/posts/', CommentRoute);
+app.get('/posts/:id', (req, res)=>{
+    console.log("hello")
+})
 app.listen(8000,()=>{
     console.log("listening to port 8000")
 })
