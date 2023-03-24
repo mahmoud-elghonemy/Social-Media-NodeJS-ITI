@@ -1,4 +1,4 @@
-const User=require('../models/userSchema')
+const User=require('../models/UserSchema')
 const jwt=require('jsonwebtoken');
 const {promisify}=require('util')
 const verifyJwt=promisify(jwt.verify)

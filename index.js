@@ -29,9 +29,7 @@ app.use((err,req,res,next)=>{
 
 
 
-app.get('/posts/:id', (req, res)=>{
-    console.log("hello")
-})
+
 app.listen(8000,()=>{
     console.log("listening to port 8000")
 })
