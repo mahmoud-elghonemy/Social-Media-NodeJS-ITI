@@ -9,7 +9,7 @@ const PostRoutes=require('./routes/PostRoute')
 
 
 app.use('/user',UserRoutes)
-app.use('/posts/comments', CommentRoute);
+app.use('/posts/', CommentRoute);
 app.use('/posts', PostRoutes);
 
 
