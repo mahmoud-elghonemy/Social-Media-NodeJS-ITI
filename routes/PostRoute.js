@@ -24,19 +24,15 @@ router.post('/',async (req,res,next)=>{
     await post.save();
 	res.send(post)
 })
-///exit bug don't update in database put and patch
-// router.put('/:id',async (req,res,next)=>{
-//     const updatepost=req.body.post;
-//     await Post.findByIdAndUpdate(req.params.id, updatepost);
-//     res.send("post is updated")
-// })
-// //edit  post 
-// router.patch('/:id',async (req,res,next)=>{
-//     const updatepost=req.body.post;
-//     await Post.findByIdAndUpdate(req.params.id, updatepost ,{new: true});
-//     res.send("post is updated")
 
-// })
+//edit  post 
+router.patch('/:id',async (req,res,next)=>{
+    const updatepost=req.body.post;
+    const upPost =await Post.findByIdAndUpdate(req.params.id,{post:updatepost},{new: true});
+    res.send(upPost);
+   
+
+})
 
 //delete this post
 router.delete('/:id',async (req,res,next)=>{
