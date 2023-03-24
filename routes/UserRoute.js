@@ -58,4 +58,27 @@ async (req,res,next)=>{
     res.send('profile page');
 })
 
+
+//persmission admin to CRUD user
+
+router.get('/',async(req,res,next)=>{
+    
+})
+//update attribute in user 
+router.patch('/:id', async(req,res,next)=>{
+
+})
+//updates all attributes for user 
+router.put('/:id',async(req,res,next)=>{
+
+})
+
+// delete user
+router.delete('/:id',(req,res)=>{})
+
+
+
+
+
+
 module.exports=router
