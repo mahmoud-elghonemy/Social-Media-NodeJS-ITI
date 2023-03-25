@@ -29,11 +29,18 @@ const UserSchema = mongoose.Schema({
     password:{
         type:String,
         required: true
-    }
+    },role: {
+        type: String,
+        enum: ['admin', 'creator', 'user'],
+        default: 'user'
+      }
+
+
+
   },{
 	toJSON:{
 		transform: (doc,ret)=>{
-			const dataToReturn = _.pick(ret,['_id','email','username','age'])
+			const dataToReturn = _.pick(ret,['_id','email','username','age','role'])
 			return dataToReturn;
 		}
 	}});
