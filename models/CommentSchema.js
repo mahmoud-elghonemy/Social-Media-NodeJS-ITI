@@ -13,12 +13,13 @@ const CommentSchema = new Schema({
     //     type: Schema.Types.ObjectId,
     //     required: true,
     //     ref: 'User'
-    // },
-    // post: {
-    //     type: Schema.Types.ObjectId,
-    //     required: true,
-    //     ref: 'Post'
-    // }
+    //}
+    ,
+    post: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: 'Post'
+    }
 })
 
 const Comment = mongoose.model('Comment', CommentSchema);

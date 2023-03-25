@@ -15,7 +15,7 @@ router.post("/:post_id/comments", async(req,res)=>{
 })
 
 router.get('/:post_id/comments', async(req,res)=>{
-    const comments = await Comment.find({post: req.params.id});
+    const comments = await Comment.find({post: req.params.post_id});
     // const comments = await Comment.find({});
     res.send(comments);
 })
