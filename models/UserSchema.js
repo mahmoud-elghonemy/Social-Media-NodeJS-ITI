@@ -1,6 +1,6 @@
 const mongoose= require("mongoose")
 const bcrypt =require('bcrypt')
-
+const _ = require('lodash'); 
 const UserSchema = mongoose.Schema({
     firstname:{
         type:String,
@@ -29,10 +29,14 @@ const UserSchema = mongoose.Schema({
     password:{
         type:String,
         required: true
-    },
-
-   
-  });
+    }
+  },{
+	toJSON:{
+		transform: (doc,ret)=>{
+			const dataToReturn = _.pick(ret,['_id','email','username','age'])
+			return dataToReturn;
+		}
+	}});
   
 UserSchema.pre('save',async function(next){
 	const userDocument = this;
