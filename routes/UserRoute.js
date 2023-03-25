@@ -4,10 +4,12 @@ const User=require('../models/UserSchema')
 const jwt = require('jsonwebtoken');
 const signJwt = promisify(jwt.sign);
 // const {jwtSecret} = require('../config')
-const validator = require('../helper/validator');
+// const validator = require('../helper/validator');
 const verify = require('../helper/verify');
 const CustomError = require('../helper/customError');
 const router=express.Router()
+const {validateSignin}=require('../helper/validator')
+
 
 router.post('/signup',async (req,res,next)=>{
     const {firstname,lastname,username,email,age,password }=req.body;
@@ -30,14 +32,14 @@ router.post('/signup',async (req,res,next)=>{
      }
 })
 
-router.post('/login',validator.validateSignin,async (req,res,next)=>
+router.post('/login',validateSignin,async (req,res,next)=>
 {
     
     const {email,password} = req.body;
 		const user  = await User.findOne({email});
-		if(!user) throw new CustomError('invalid credentials',400);
+		if(!user) throw new CustomError('user invalid credentials',400);
 		const isMatch = await user.comparePassword(password);
-		if(!isMatch) throw new CustomError('invalid credentials',400);
+		if(!isMatch) throw new CustomError('password invalid credentials',400);
 		// create token 
 		const payload = {id:user._id}
 		const token = await signJwt(payload,"mySecret",{expiresIn:'1h'}) // kdlsfjasklfds.

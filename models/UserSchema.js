@@ -1,5 +1,5 @@
 const mongoose= require("mongoose")
-
+const bcrypt =require('bcrypt')
 
 const UserSchema = mongoose.Schema({
     firstname:{
@@ -29,14 +29,15 @@ const UserSchema = mongoose.Schema({
     password:{
         type:String,
         required: true
-    }
+    },
+
    
   });
   
 UserSchema.pre('save',async function(next){
 	const userDocument = this;
 	if(userDocument.isModified('password')){
-		const hashedPassword = await bcrypt.hash(userDocument.password,saltRound);
+		const hashedPassword = await bcrypt.hash(userDocument.password,14);
 		userDocument.password = hashedPassword;
 	}
 	next();
