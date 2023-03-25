@@ -12,7 +12,7 @@ const {validateSignin}=require('../helper/validator')
 
 
 router.post('/signup',async (req,res,next)=>{
-    const {firstname,lastname,username,email,age,password }=req.body;
+    const {firstname,lastname,username,email,age,password,role }=req.body;
    
     try{
          const newUser = new User({
@@ -21,7 +21,8 @@ router.post('/signup',async (req,res,next)=>{
              username,
              email,
              age,
-             password
+             password,
+             role
          });
          await newUser.save();
          res.send(newUser);
@@ -55,7 +56,7 @@ router.post('/login',validateSignin,async (req,res,next)=>
 })
 
 router.get('/profile',
-verify
+verify.authorizedUser
 ,
 async (req,res,next)=>{
     res.send('profile page');
@@ -64,43 +65,40 @@ async (req,res,next)=>{
 
 //persmission admin to CRUD user
 //get all users
-router.get('/',async(req,res,next)=>{
+router.get('/',verify.authorizedAdmin,async(req,res,next)=>{
     users=await User.find({});
     res.send(users);
 })
 
-router.get('/:id',async (req,res,next)=>{
+router.get('/:id',verify.authorizedAdmin,async (req,res,next)=>{
     user=await User.findById(req.params.id);
     res.send(user);
 })
 
 
 //update attribute in user 
-router.patch('/:id', async(req,res,next)=>{
+router.patch('/:id',verify.authorizedAdmin,async(req,res,next)=>{
 
 })
 //updates all attributes for user 
-router.put('/:id',async(req,res,next)=>{
+router.put('/:id',verify.authorizedAdmin,async(req,res,next)=>{
 
 })
 
 // delete user
 //remain check admin or no-->authorize this  
-router.delete('/:id',async (req,res,next )=>{
+router.delete('/:id',verify.authorizedAdmin,async (req,res,next )=>{
     await User.findByIdAndDelete(req.params.id,{new: true});
     res.send("User is deleted");
 
 })
 
 //delete all users 
-router.delete('/',async (req,res,next)=>{
+router.delete('/',verify.authorizedAdmin,async (req,res,next)=>{
 
     await User.deleteMany({});
     res.send("All users are deleted")
 })
-
-
-
 
 
 

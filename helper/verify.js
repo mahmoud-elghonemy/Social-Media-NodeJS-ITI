@@ -69,7 +69,7 @@ if(!user)
 }
 
 if(user.role!='creator'){
-    const error=new Error('unauthorized Creator');
+    const error=new Error('unauthorized,this action is specific for creator only');
     error.statusCode=401;
     return next(error)
 }
@@ -117,7 +117,7 @@ if(!user)
 }
 
 if(user.role!='admin'){
-    const error=new Error('unauthorized Creator');
+    const error=new Error('unauthorized,this action is specific for admin only');
     error.statusCode=401;
     return next(error)
 }
