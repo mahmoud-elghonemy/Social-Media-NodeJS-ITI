@@ -4,6 +4,7 @@ const {promisify}=require('util')
 const verifyJwt=promisify(jwt.verify)
 const Post = require("../models/PostSchema");
 const Comment = require("../models/CommentSchema");
+const Review = require("../models/ReviewSchema");
 
 
 const authorizedUser =async (req,res,next)=>{
@@ -213,12 +214,14 @@ if(!user)
 
 }
 
-///
-
 const comment = await Comment.findOne({_id: req.params.comment_id});
+const review = await Review.findOne({_id: req.params.review_id});
+// console.log(user);
 
-if(id == comment.user.toString()){
+if(id == review.user.toString()){
     console.log("here");
+    next();
+}else if(id == comment.user.toString()){
     next();
 }else{
     const error=new Error('unauthorized,this action is specific for the comment user only');
@@ -226,9 +229,6 @@ if(id == comment.user.toString()){
     return next(error);
 }
 
-
-// req.user=user;
-// next();
 }catch(err)
 {
 console.log(err)
