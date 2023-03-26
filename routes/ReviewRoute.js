@@ -3,10 +3,11 @@ const router = express.Router();
 const Comment = require('../models/CommentSchema');
 const Post = require("../models/PostSchema");
 const Review = require("../models/ReviewSchema")
+const verify = require("../helper/verify");
 
 const { authorizedUser } = require("../helper/Authorize");
 
-router.post("/:post_id/review", async(req,res,next)=>{
+router.post("/:post_id/review",verify.authorizedUser, async(req,res,next)=>{
     const review = await Review.create({
         review: req.body.review,
         user: req.user._id,
@@ -16,7 +17,7 @@ router.post("/:post_id/review", async(req,res,next)=>{
     res.send(review);
 })
 
-router.get('/:post_id/review', async(req,res)=>{
+router.get('/:post_id/review',verify.authorizedUser, async(req,res)=>{
     const reviews = await Comment.find({post: req.params.post_id});
     let sum = 0;
     let number= reviews.length; 
@@ -30,7 +31,7 @@ router.get('/:post_id/review', async(req,res)=>{
 })
 
 
-router.patch("/:post_id/review/:review_id", async(req,res,next)=>{
+router.patch("/:post_id/review/:review_id",verify.authorizedUser, async(req,res,next)=>{
     const updatedReview = req.body.review;
 
     const review = await Review.findByIdAndUpdate(
@@ -41,7 +42,7 @@ router.patch("/:post_id/review/:review_id", async(req,res,next)=>{
         res.json(review);
 })
 
-router.delete("/:post_id/review/:review_id", async(req,res,next)=>{
+router.delete("/:post_id/review/:review_id",verify.authorizedUser, async(req,res,next)=>{
     const review = await Review.findByIdAndDelete(req.params.review_id);
     res.json({ message: 'Review deleted successfully!' });
 })
