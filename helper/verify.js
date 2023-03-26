@@ -217,11 +217,8 @@ if(!user)
 
 const comment = await Comment.findOne({_id: req.params.comment_id});
 
-// console.log(comment);
-// console.log(id);
-// console.log(comment.user.toString());
-
 if(id == comment.user.toString()){
+    console.log("here");
     next();
 }else{
     const error=new Error('unauthorized,this action is specific for the comment user only');
@@ -230,8 +227,60 @@ if(id == comment.user.toString()){
 }
 
 
-req.user=user;
-next();
+// req.user=user;
+// next();
+}catch(err)
+{
+console.log(err)
+next(err)
+
+}
+}
+
+const adminORuserComment = async (req,res,next)=>{
+    console.log(req.headers.authorization)
+//extract token from headers
+//verify the token (secret)
+//find user by id 
+//attach  user to request body
+//middleware to check if user exist and authroized
+try
+{
+const token =req.headers.authorization;
+if(!token)
+{
+    const error=new Error('unauthorized');
+    error.statusCode=401;
+    return next(error)
+
+}
+const {id}=await verifyJwt(token,"mySecret")
+const user=await User.findById(id)
+if(!user)
+{
+    const error=new Error('unauthorized');
+    error.statusCode=401;
+    return next(error)
+
+}
+
+///
+
+const comment = await Comment.findOne({_id: req.params.comment_id});
+
+
+if(id == comment.user.toString() || user.role =="admin"){
+    console.log("here");
+    next();
+}else{
+    const error=new Error('unauthorized,this action is specific for the comment user only');
+    error.statusCode=401;
+    return next(error);
+}
+
+
+// req.user=user;
+// next();
 }catch(err)
 {
 console.log(err)
@@ -249,5 +298,6 @@ module.exports = {
     authorizedCreator,
     authorizedAdmin,
     unauthorizedUser,
-    userComment
+    userComment,
+    adminORuserComment
 }
