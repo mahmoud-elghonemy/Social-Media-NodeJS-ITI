@@ -18,8 +18,8 @@ router.get('/:id',verify.authorizedCreator,async (req,res,next)=>{
 //create post 
 router.post('/',verify.authorizedCreator,async (req,res,next)=>{
     const post = await Post.create({
-		post:req.body.post
-		// user: req.user._id
+		post:req.body.post,
+		User: req.user._id
 	})
     await post.save();
 	res.send(post)
@@ -35,15 +35,14 @@ router.patch('/:id',verify.authorizedCreator,async (req,res,next)=>{
 })
 
 //delete this post
-router.delete('/:id',verify.authorizedCreator,async (req,res,next)=>{
+router.delete('/:id',verify.unauthorizedUser,async (req,res,next)=>{
     await Post.findByIdAndDelete(req.params.id,{new: true});
     res.send("post is deleted");
 
 })
 
 //delete all posts 
-router.delete('/',verify.authorizedCreator,async (req,res,next)=>{
-
+router.delete('/',verify.authorizedAdmin,async (req,res,next)=>{
     await Post.deleteMany({});
     res.send("All posts are deleted")
 })
