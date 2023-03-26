@@ -6,11 +6,12 @@ require('./db')
 const CommentRoute = require("./routes/CommentRoute");
 const UserRoutes=require('./routes/UserRoute')
 const PostRoutes=require('./routes/PostRoute')
-
+const ReviewRoute=require('./routes/ReviewRoute');
 
 app.use('/user',UserRoutes)
 
 app.use('/posts', CommentRoute);
+app.use('/posts', ReviewRoute);
 
 app.use('/posts', PostRoutes);
 
