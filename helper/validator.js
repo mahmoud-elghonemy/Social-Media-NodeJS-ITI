@@ -3,8 +3,8 @@ const Joi = require('joi');
 // Login validation
 const loginSchema = Joi.object({
     email: Joi.string()
-    .required()
-    .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }), 
+        .required()
+        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }), 
     
     password: Joi.string()
         .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
@@ -13,7 +13,7 @@ const loginSchema = Joi.object({
 const validateSignin = (req,res,next)=>{
     const {error} = loginSchema.validate(req.body);
     if(error){
-        const err = new Error("invalid credentials ");
+        const err = new Error("invalid credentials!!");
         err.statusCode= 400;
         return next(err);
     }
