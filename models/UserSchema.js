@@ -1,6 +1,8 @@
 const mongoose= require("mongoose")
 const bcrypt =require('bcrypt')
 const _ = require('lodash'); 
+const dotenv=require('dotenv')
+dotenv.config()
 const UserSchema = mongoose.Schema({
     firstname:{
         type:String,
@@ -48,7 +50,7 @@ const UserSchema = mongoose.Schema({
 UserSchema.pre('save',async function(next){
 	const userDocument = this;
 	if(userDocument.isModified('password')){
-		const hashedPassword = await bcrypt.hash(userDocument.password,14);
+		const hashedPassword = await bcrypt.hash(userDocument.password,process.env.SALT_HASH);
 		userDocument.password = hashedPassword;
 	}
 	next();

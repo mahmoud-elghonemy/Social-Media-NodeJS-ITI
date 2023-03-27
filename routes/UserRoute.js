@@ -3,8 +3,8 @@ const {promisify} = require('util');
 const User=require('../models/UserSchema')
 const jwt = require('jsonwebtoken');
 const signJwt = promisify(jwt.sign);
-// const {jwtSecret} = require('../config')
-// const validator = require('../helper/validator');
+const dotenv=require('dotenv')
+dotenv.config()
 const verify = require('../helper/verify');
 const CustomError = require('../helper/customError');
 const router=express.Router()
@@ -43,7 +43,7 @@ router.post('/login',validateSignin,async (req,res,next)=>
 		if(!isMatch) throw new CustomError('password invalid credentials',400);
 		// create token 
 		const payload = {id:user._id}
-		const token = await signJwt(payload,"mySecret",{expiresIn:'1h'}) // kdlsfjasklfds.
+		const token = await signJwt(payload,process.env.JWT_SECRET,{expiresIn:'1h'}) // kdlsfjasklfds.
 		// send to client
 		res.json({
 			message:'logged in',

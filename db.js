@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/todo')
+const dotenv=require('dotenv')
+dotenv.config()
+mongoose.connect(process.env.DATABASE_URL)
 .then(()=> console.log("connected to database"))
 .catch((err)=> {
     console.log(err);

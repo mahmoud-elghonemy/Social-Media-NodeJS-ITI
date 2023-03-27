@@ -1,5 +1,7 @@
 const express= require('express')
 const app=express()
+const dotenv=require('dotenv')
+dotenv.config()
 app.use(express.json());
 require('express-async-errors');
 require('./db')
@@ -34,6 +36,6 @@ app.use((err,req,res,next)=>{
 
 
 
-app.listen(8000,()=>{
-    console.log("listening to port 8000")
+app.listen(process.env.PORT,()=>{
+    console.log(`listening to port ${process.env.PORT}`)
 })
