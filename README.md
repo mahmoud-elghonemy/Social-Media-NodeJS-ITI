@@ -1,7 +1,6 @@
 # Social-Media-NodeJS-ITI
 Social Media NodeJS ITI
-Node.js Social Media Project
-This project is a social media backend server that allows for user authentication and CRUD operations for users, posts, comments, and reviews. It also includes features such as profile picture uploading and request validation.
+This project is a Social Media Backend Server built using Node.js. It implements CRUD operations for User, Post, Comments and Review models. Additionally, it also includes features such as Role based authentication, request validation, error handling and data aggregation using MongoDB Aggregation Pipelines.
 
 ## Features
 
