@@ -35,14 +35,20 @@ const UserSchema = mongoose.Schema({
         type: String,
         enum: ['admin', 'creator', 'user'],
         default: 'user'
+      },
+      profile_pic:{
+        type:String
+      },
+      cloudinary_id:
+      {
+        type: String
       }
-
 
 
   },{
 	toJSON:{
 		transform: (doc,ret)=>{
-			const dataToReturn = _.pick(ret,['_id','email','username','age','role'])
+			const dataToReturn = _.pick(ret,['_id','email','username','age','role','profile_pic','cloudinary_id'])
 			return dataToReturn;
 		}
 	}});
@@ -50,7 +56,7 @@ const UserSchema = mongoose.Schema({
 UserSchema.pre('save',async function(next){
 	const userDocument = this;
 	if(userDocument.isModified('password')){
-		const hashedPassword = await bcrypt.hash(userDocument.password,process.env.SALT_HASH);
+		const hashedPassword = await bcrypt.hash(userDocument.password,14);
 		userDocument.password = hashedPassword;
 	}
 	next();
