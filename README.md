@@ -81,3 +81,10 @@ Once the server is running, you can use the following endpoints:
 - `/api/reviews/:id` - PUT request to update a review (user can update their own reviews, admin role can update any review)
 
 
+## Contributing
+Contributions to this project are welcome. If you would like to contribute, please submit a pull request.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+
