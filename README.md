@@ -40,11 +40,14 @@ npm install
 
 3-Create .env file and add required environment variables.
 ```
-MONGO_URI=<your MongoDB URI>
+PORT=<your port to listen server>
+DATABASE_URL=<your MongoDB URI>
+SALT=<your round salt>
 JWT_SECRET=<your JWT secret>
 CLOUDINARY_CLOUD_NAME=<your Cloudinary cloud name>
 CLOUDINARY_API_KEY=<your Cloudinary API key>
 CLOUDINARY_API_SECRET=<your Cloudinary API secret>
+
 ```
 
 4-Start the server: 
