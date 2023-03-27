@@ -70,18 +70,24 @@ Once the server is running, you can use the following endpoints:
 - `/api/posts` - POST request to create a new post (creator role only)
 - `/api/posts/:id` - PUT request to update a post (creator role only)
 - `/api/posts/:id` - DELETE request to delete a post (creator role only)
-- `/api/comments` - GET request to retrieve all comments
-- `/api/comments/:id` - GET request to retrieve a single comment
-- `/api/comments` - POST request to create a new comment
-- `/api/comments/:id` - PUT request to update a comment (user can update their own comments, admin role can update any comment)
-- `/api/comments/:id` - DELETE request to delete a comment (user can delete their own comments, admin role can delete any comment)
-- `/api/reviews` - GET request to retrieve all reviews
-- `/api/reviews/:id` - GET request to retrieve a single review
-- `/api/reviews` - POST request to create a new review
-- `/api/reviews/:id` - PUT request to update a review (user can update their own reviews, admin role can update any review)
+- `/api/posts/:post_id/comments` - GET request to retrieve all comments
+- `/api/posts/:post_id/comments/:comment_id` - GET request to retrieve a single comment
+- `/api/posts/:post_id/comments` - POST request to create a new comment
+- `/api/posts/:post_id/comments/:comment_id` - PUT request to update a comment (user can update their own comments, admin role can update any comment)
+- `/api/posts/:post_id/comments/:comment_id` - DELETE request to delete a comment (user can delete their own comments, admin role can delete any comment)
+- `/api/posts/:post_id/review` - GET request to retrieve all reviews
+- `/api/posts/:post_id/review/:review_id` - GET request to retrieve a single review
+- `/api/posts/:post_id/review` - POST request to create a new review
+- `/api/posts/:post_id/review/:review_id` - PUT request to update a review (user can update their own reviews, admin role can update any review)
 
 
+
+##  Authors
+
+<a href="https://github.com/mahmoudmohamed22">- Mahmoud M.Abdelwahab</a> 
+<a href="https://github.com/MahmoudMansourr">- Mahmoud M.Mansour</a> 
 ## Contributing
+
 Contributions to this project are welcome. If you would like to contribute, please submit a pull request.
 
 ## License
