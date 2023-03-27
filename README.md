@@ -54,5 +54,28 @@ npm start
 ```
 
 
+## Usage
+Once the server is running, you can use the following endpoints:
+
+- `/api/user/signup` - POST request to register a new user
+- `/api/user/login`- POST request to log in an existing user
+- `/api/user` - GET request to retrieve all users (admin role only)
+- `/api/user/:id` - GET request to retrieve a single user (admin role only)
+- `/api/user/:id` - PUT request to update a user's information (user can update their own information, admin role can update any user)
+- `/api/user/:id` - DELETE request to delete a user (admin role only)
+- `/api/posts` - GET request to retrieve all posts
+- `/api/posts/:id` - GET request to retrieve a single post
+- `/api/posts` - POST request to create a new post (creator role only)
+- `/api/posts/:id` - PUT request to update a post (creator role only)
+- `/api/posts/:id` - DELETE request to delete a post (creator role only)
+- `/api/comments` - GET request to retrieve all comments
+- `/api/comments/:id` - GET request to retrieve a single comment
+- `/api/comments` - POST request to create a new comment
+- `/api/comments/:id` - PUT request to update a comment (user can update their own comments, admin role can update any comment)
+- `/api/comments/:id` - DELETE request to delete a comment (user can delete their own comments, admin role can delete any comment)
+- `/api/reviews` - GET request to retrieve all reviews
+- `/api/reviews/:id` - GET request to retrieve a single review
+- `/api/reviews` - POST request to create a new review
+- `/api/reviews/:id` - PUT request to update a review (user can update their own reviews, admin role can update any review)
 
 
