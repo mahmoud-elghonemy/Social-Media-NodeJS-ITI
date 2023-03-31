@@ -1,6 +1,16 @@
 # Social-Media-NodeJS-ITI
-Social Media NodeJS ITI
+Social Media NodeJS ITI,
 This project is a Social Media Backend Server built using Node.js. It implements CRUD operations for User, Post, Comments and Review models. Additionally, it also includes features such as Role based authentication, request validation, error handling and data aggregation using MongoDB Aggregation Pipelines.
+
+## Technologies Used
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- Joi
+- Cloudinary
+- Multer
 
 ## Features
 
@@ -84,7 +94,7 @@ Once the server is running, you can use the following endpoints:
 
 ##  Authors
 
-<a href="https://github.com/mahmoudmohamed22">- Mahmoud M.Abdelwahab</a> 
+<a href="https://github.com/mahmoudmohamed22">- Mahmoud M.Abdelwahab</a>  &nbsp;  &nbsp;  &nbsp;  &nbsp;
 <a href="https://github.com/MahmoudMansourr">- Mahmoud M.Mansour</a> 
 ## Contributing
 
